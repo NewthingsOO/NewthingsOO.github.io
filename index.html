@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ooyabu -通話できる？</title>
+  <title>Ooyabu - 通話できる？</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     /* -------- Lightbox -------- */
@@ -56,7 +56,7 @@
     <section id="about" class="section">
       <div class="container stack">
         <h2>やっほー</h2>
-        <p>今後の活動について具体的に決めましょう</p>
+        <p>おーやぶさんなにしてるんですか。</p>
       </div>
     </section>
 
@@ -64,16 +64,16 @@
     <section id="gallery" class="section alt">
       <div class="container">
         <h2>画像ギャラリー</h2>
-<div class="grid">
-  <img src="ooyabu22HDR_small.jpg" alt="Sample 1" class="grid-item" loading="lazy" />
-  <img src="ooyabu43HDR_small.jpg" alt="Sample 2" class="grid-item" loading="lazy" />
-  <img src="https://picsum.photos/id/1035/600/400" alt="Sample 3" class="grid-item" loading="lazy" />
-  <img src="https://picsum.photos/id/1041/600/400" alt="Sample 4" class="grid-item" loading="lazy" />
-  <img src="https://picsum.photos/id/1050/600/400" alt="Sample 5" class="grid-item" loading="lazy" />
-  <img src="https://picsum.photos/id/1069/600/400" alt="Sample 6" class="grid-item" loading="lazy" />
-</div>
-
-        <p class="note">※ 画像はダミーです。自分の写真に差し替えてください。</p>
+        <div class="grid">
+          <!-- サムネイル表示。クリックで高画質ロード -->
+          <img src="ooyabu22HDR_thumb.jpg" data-full="ooyabu22HDR_large.jpg" alt="Sample 1" class="grid-item" loading="lazy" />
+          <img src="ooyabu43HDR_thumb.jpg" data-full="ooyabu43HDR_large.jpg" alt="Sample 2" class="grid-item" loading="lazy" />
+          <img src="https://picsum.photos/id/1035/150/100" data-full="https://picsum.photos/id/1035/600/400" alt="Sample 3" class="grid-item" loading="lazy" />
+          <img src="https://picsum.photos/id/1041/150/100" data-full="https://picsum.photos/id/1041/600/400" alt="Sample 4" class="grid-item" loading="lazy" />
+          <img src="https://picsum.photos/id/1050/150/100" data-full="https://picsum.photos/id/1050/600/400" alt="Sample 5" class="grid-item" loading="lazy" />
+          <img src="https://picsum.photos/id/1069/150/100" data-full="https://picsum.photos/id/1069/600/400" alt="Sample 6" class="grid-item" loading="lazy" />
+        </div>
+        <p class="note">※ サムネイル画像は軽量化してあります。クリックすると高画質版が表示されます。</p>
       </div>
     </section>
 
@@ -148,13 +148,16 @@
       const lightboxImg = document.getElementById('lightbox-img');
       const closeBtn = document.querySelector('.lightbox-close');
 
+      // サムネイルクリックで高画質画像ロード
       document.querySelectorAll('.grid-item').forEach(img => {
         img.addEventListener('click', () => {
-          lightboxImg.src = img.src;
+          const fullSrc = img.getAttribute('data-full');
+          lightboxImg.src = fullSrc;
           lightbox.classList.add('active');
         });
       });
 
+      // 閉じる処理
       closeBtn.addEventListener('click', () => {
         lightbox.classList.remove('active');
         lightboxImg.src = '';
