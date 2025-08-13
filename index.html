@@ -1,12 +1,42 @@
-# Newt<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My Hobby - シンプルサイト</title>
-  <meta name="description" content="趣味のためのシンプルな個人サイト。ギャラリー、地図、お問い合わせフォーム付き。">
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <style>
+    /* -------- Lightbox -------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(0,0,0,0.7);
+      padding: 24px;
+      z-index: 1000;
+      display: grid;
+    }
+    .lightbox.active {
+      display: grid;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 32px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -35,7 +65,7 @@
       <div class="container">
         <h2>画像ギャラリー</h2>
         <div class="grid">
-          <img src="https://media.discordapp.net/attachments/1067731547299516419/1405175027774652446/IMG02153_HDR.jpg?ex=689ddeb9&is=689c8d39&hm=c55aed859e8ca846bcf499541b5b85c37ef498499e974d1fa1752d9983a0adca&=&format=webp&width=679&height=509" alt="Sample 1" class="grid-item" />
+          <img src="https://media.discordapp.net/attachments/1067731547299516419/1405175027774652446/IMG02153_HDR.jpg" alt="Sample 1" class="grid-item" />
           <img src="https://picsum.photos/id/1025/600/400" alt="Sample 2" class="grid-item" />
           <img src="https://picsum.photos/id/1035/600/400" alt="Sample 3" class="grid-item" />
           <img src="https://picsum.photos/id/1041/600/400" alt="Sample 4" class="grid-item" />
@@ -84,7 +114,6 @@
             <textarea id="message" name="message" required rows="6"></textarea>
           </div>
 
-          <!-- スパム対策 -->
           <div class="hidden">
             <label for="website">ウェブサイト（空のまま）</label>
             <input type="text" id="website" name="website" autocomplete="off" />
@@ -106,11 +135,40 @@
     </div>
   </footer>
 
-  <!-- 画像モーダル -->
+  <!-- ライトボックス -->
   <div id="lightbox" class="lightbox" hidden>
     <button class="lightbox-close">&times;</button>
     <img id="lightbox-img" alt="拡大画像">
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const closeBtn = document.querySelector('.lightbox-close');
+
+      document.querySelectorAll('.grid-item').forEach(img => {
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.add('active');
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      });
+
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          lightboxImg.src = '';
+        }
+      });
+
+      // 年表示
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>
-hingsOO.github.io
