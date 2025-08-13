@@ -9,7 +9,7 @@ mb_language("Japanese");
 mb_internal_encoding("UTF-8");
 
 // ★★ ここをあなたの受信アドレスに変更してください ★★
-$to = "your-email@example.com";
+$to = newthingsoo.jp@gmail.com;
 
 // セキュリティ: POST以外は拒否
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
