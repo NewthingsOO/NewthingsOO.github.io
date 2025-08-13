@@ -117,3 +117,6 @@ input:focus, textarea:focus { outline: 2px solid var(--brand); border-color: tra
   position: absolute; top: 10px; right: 14px;
   font-size: 32px; background: transparent; border: 0; color: #fff; cursor: pointer;
 }
+#lightbox[hidden] {
+  display: none !important;
+}
