@@ -1,0 +1,116 @@
+# Newt<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Hobby - シンプルサイト</title>
+  <meta name="description" content="趣味のためのシンプルな個人サイト。ギャラリー、地図、お問い合わせフォーム付き。">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">My Hobby</h1>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#map">Map</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 自己紹介 -->
+    <section id="about" class="section">
+      <div class="container stack">
+        <h2>はじめまして</h2>
+        <p>ここは趣味のことをゆるく置いていくシンプルなサイトです。スマホ対応、画像ギャラリー、地図、お問い合わせフォーム（メール送信）まで入っています。必要な部分だけ文言を書き換えて使ってください。</p>
+      </div>
+    </section>
+
+    <!-- 画像ギャラリー -->
+    <section id="gallery" class="section alt">
+      <div class="container">
+        <h2>画像ギャラリー</h2>
+        <div class="grid">
+          <img src="https://picsum.photos/id/1015/600/400" alt="Sample 1" class="grid-item" />
+          <img src="https://picsum.photos/id/1025/600/400" alt="Sample 2" class="grid-item" />
+          <img src="https://picsum.photos/id/1035/600/400" alt="Sample 3" class="grid-item" />
+          <img src="https://picsum.photos/id/1041/600/400" alt="Sample 4" class="grid-item" />
+          <img src="https://picsum.photos/id/1050/600/400" alt="Sample 5" class="grid-item" />
+          <img src="https://picsum.photos/id/1069/600/400" alt="Sample 6" class="grid-item" />
+        </div>
+        <p class="note">※ 画像はダミーです。自分の写真に差し替えてください。</p>
+      </div>
+    </section>
+
+    <!-- 地図 -->
+    <section id="map" class="section">
+      <div class="container stack">
+        <h2>アクセス（地図）</h2>
+        <p>住所が決まっていないため、日本全体の地図を仮で表示しています。確定したら地図の埋め込みURLを差し替えてください。</p>
+        <div class="map-wrap">
+          <iframe
+            title="Google Map"
+            src="https://www.google.com/maps?q=Japan&output=embed"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section id="contact" class="section alt">
+      <div class="container">
+        <h2>お問い合わせ</h2>
+        <form id="contactForm" class="form" method="POST" action="send_mail.php" novalidate>
+          <div class="form-field">
+            <label for="name">お名前 <span class="req">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="山田 太郎" />
+          </div>
+          <div class="form-field">
+            <label for="email">メールアドレス <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="your@example.com" />
+          </div>
+          <div class="form-field">
+            <label for="subject">件名</label>
+            <input type="text" id="subject" name="subject" placeholder="お問い合わせの件" />
+          </div>
+          <div class="form-field">
+            <label for="message">メッセージ <span class="req">*</span></label>
+            <textarea id="message" name="message" required rows="6"></textarea>
+          </div>
+
+          <!-- スパム対策 -->
+          <div class="hidden">
+            <label for="website">ウェブサイト（空のまま）</label>
+            <input type="text" id="website" name="website" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn">送信する</button>
+          <p id="formMsg" class="form-msg"></p>
+        </form>
+        <p class="note small">
+          メール通知の宛先は <code>send_mail.php</code> の <code>$to</code> を編集してください。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> My Hobby</small>
+    </div>
+  </footer>
+
+  <!-- 画像モーダル -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close">&times;</button>
+    <img id="lightbox-img" alt="拡大画像">
+  </div>
+</body>
+</html>
+hingsOO.github.io
